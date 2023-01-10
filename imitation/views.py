@@ -55,6 +55,7 @@ class HomeView(IncidentMixin, ListView):
         context['stat_dict'] = IncidentAjaxStatisticView.get_stat_dict()
         return context
 
+
 class StatisticView(LoginMixin, TemplateView):
     template_name = 'imitation/stat.html'
 
