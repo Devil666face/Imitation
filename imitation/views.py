@@ -33,7 +33,8 @@ from imitation.forms import (
 )
 from django.contrib import messages
 from imitation.utils import (
-    get_main_chart
+    get_main_chart,
+    get_rounded_chart,
 )
 
 
@@ -61,8 +62,9 @@ class StatisticView(LoginMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['chart'] = get_main_chart()
         context['stat_dict'] = IncidentAjaxStatisticView.get_stat_dict()
+        context['chart'] = get_main_chart()
+        context['round_chart'] = get_rounded_chart(data = context['stat_dict'])
         return context
 
 class IncidentListAjaxView(IncidentMixin, ListView):

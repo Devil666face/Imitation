@@ -1,5 +1,9 @@
-from imitation.models import Incident
 import plotly.express
+from plotly.graph_objects import (
+	Figure,
+	Pie
+)
+from imitation.models import Incident
 
 def get_main_chart():
 	incident_list = Incident.objects.all().order_by('created_at')
@@ -16,4 +20,13 @@ def get_main_chart():
 		'xanchor':'center',
 		'x':0.5,
 	})
+	return chart_data.to_html()
+
+def get_rounded_chart(data:dict):
+	values = list() 
+	labels = ['Легетимных', 'Не определено',  'Нарушенией']
+	for key in data:
+		if key!='all':
+			values.append(data[key])
+	chart_data = Figure(data=[Pie(labels=labels, values=values, textinfo='label+percent', pull=[0, 0, 0.2])])		
 	return chart_data.to_html()
