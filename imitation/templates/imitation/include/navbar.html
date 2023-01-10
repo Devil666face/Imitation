@@ -1,5 +1,7 @@
 {% load static %}
+{% load cache %}
 {% load custom_tags %}
+{% cache 500 navbar %}
 <nav class="navbar bg-body-tertiary fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand d-flex justify-content-center" href="{% url 'imitation:home' %}">
@@ -62,16 +64,4 @@
     </div>
   </div>
 </nav>
-{% comment %}
-<div class="d-flex justify-content-between align-items-center">
-  <a class="nav-link fw-bold py-1 px-0 float-md-start fs-5" href="{% url 'order_list' %}">
-    <i class="bi-cash-coin"></i>
-    Finance control</a>
-  <nav class="nav nav-masthead justify-content-center float-md-end">
-    {% comment %}
-    {% url 'create_order' as the_url %}
-    <a class="nav-link fw-bold py-1 px-0 {% if the_url == current_page %}active{% endif %}" href="{{the_url}}">
-     Add order</a>
-  </nav>
-</div>
-{% endcomment %}
+{% endcache %}

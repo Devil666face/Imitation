@@ -12,6 +12,7 @@ incident = [
     path('incident/list', IncidentListAjaxView.as_view(), name='incident_list'),
     path('incident/<int:pk>/delete', IncidentDeleteAjaxView.as_view(), name='incident_delete'),
     path('incident/create', IncidentCreateView.as_view(), name='incident_create'),
+    path('incident/<int:pk>/update/legal', IncidentUpdateLegalAjaxView.as_view(), name='incident_update_legal'),
     path('incident/<int:pk>/update', IncidentUpdateAjaxView.as_view(), name='incident_update'),
     path('incident/stat', IncidentAjaxStatisticView.as_view(), name='incident_stat'),
 ]

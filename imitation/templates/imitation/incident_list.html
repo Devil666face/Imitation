@@ -1,5 +1,6 @@
 {% for incident in incident_list %}
-<div class="card bg-light border-{% if incident.legal == "YES" %}success{% elif incident.legal == "NO" %}danger{% else %}secondary{% endif %} {% if forloop.last %}{% else %}mb-3{% endif %}">
+<div id="card_{{incident.pk}}" class="mb-3">
+<div class="card bg-light border-{% if incident.legal == "YES" %}success{% elif incident.legal == "NO" %}danger{% else %}secondary{% endif %}">
   <div class="card-header text-white d-flex justify-content-between bg-{% if incident.legal == "YES" %}success{% elif incident.legal == "NO" %}danger{% else %}secondary{% endif %}">
       {% if incident.legal == "YES" %}
         <i class="bi bi-shield-fill-check"></i>
@@ -39,5 +40,6 @@
     </div>
 		<small>{{incident.created_at}} - {{incident.created_at|timesince}} назад</small>
   </div>
+</div>
 </div>
 {% endfor %}

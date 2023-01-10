@@ -88,8 +88,16 @@ class IncidentUpdateAjaxView(IncidentMixin, ModelFormListUpdateView):
         return context
 
 
+class IncidentUpdateLegalAjaxView(IncidentMixin, ModelFormListUpdateView):
+
+    def form_valid(self, form):
+        super().form_valid(form)
+        return self.response_class(request=self.request, template='imitation/incident_list.html' ,context={'incident_list':Incident.objects.filter(pk=self.object.pk)})
+    
+
 class IncidentDeleteAjaxView(IncidentMixin, DeleteAjaxMixin):
     delete_message = 'Инцидент удален'
+
 
 class IncidentAjaxStatisticView(IncidentMixin, TemplateView):
     template_name = 'imitation/incident_stat.html'
