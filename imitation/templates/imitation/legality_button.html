@@ -1,0 +1,13 @@
+
+<button id="{{prefix}}_{{incident.pk}}"
+      class="btn m-1 shadow btn-sm 
+							btn-{% if incident.legal == prefix %}{% else %}outline-{% endif %}{% if prefix == 'YES' %}success{% elif prefix == 'NONE' %}primary{% else %}danger{% endif %} 
+							{% if incident.legal == prefix %}disabled{% endif %}"
+      hx-post="{% url 'imitation:incident_update' incident.pk %}"
+      hx-vals='{"title":"{{incident.title}}",
+                "category":"{{incident.category.id}}",
+                "legal":"{{prefix}}",
+                "ip":"{{incident.ip}}",
+                "hostname":"{{incident.hostname}}"}'
+      hx-swap="none">{% if prefix == 'YES' %}Легетимно{% elif prefix == 'NONE' %}Не определено{% else %}Нарушение{% endif %}</button>
+

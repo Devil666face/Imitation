@@ -1,0 +1,77 @@
+{% load static %}
+{% load custom_tags %}
+<nav class="navbar bg-body-tertiary fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex justify-content-center" href="{% url 'imitation:home' %}">
+      {% include 'include/lordicon.html' with path='lordicons/title.json' size=36 %}
+			СЗИ от НСД "Имитация"
+		</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel"></h5>
+		      {% include 'include/lordicon.html' with path='lordicons/title.json' size=36 %}
+					СЗИ от НСД "Имитация"
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item mb-2 dropdown">
+            <a class="nav-link p-1 btn btn-outline-primary d-flex justify-content-start align-items-center shadow" href="{% url 'admin:index' %}" role="button" aria-expanded="false">
+              {% include 'include/lordicon.html' with path='lordicons/admin.json' size=36 %}
+              Административная панель
+            </a>
+          </li>
+          <li class="nav-item dropdown mb-2">
+            <a class="nav-link p-1 dropdown-toggle btn btn-outline-primary d-flex justify-content-start align-items-center shadow" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {% include 'include/lordicon.html' with path='lordicons/data.json' size=36 %}
+              Управление данными
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'imitation:incident_create' %}">
+                <i class="bi bi-shield-fill-exclamation"></i>
+                Инциденты</a></li>
+              <li><a class="dropdown-item" href="{% url 'imitation:category_create' %}">
+                <i class="bi bi-tags"></i>
+                Категории</a></li>
+              <li><a class="dropdown-item" href="{% url 'imitation:exampleincident_create' %}">
+                <i class="bi bi-shield-fill-check"></i>
+                Известные инциденты</a></li>
+            </ul>
+          </li>
+          <li class="nav-item mb-2 dropdown">
+            <a class="nav-link p-1 btn btn-outline-primary d-flex justify-content-start align-items-center shadow" href="{% url 'imitation:stat' %}" role="button" aria-expanded="false">
+              {% include 'include/lordicon.html' with path='lordicons/stat.json' size=36 %}
+              Статистика
+            </a>
+          </li>
+          <li class="nav-item mb-2 dropdown">
+            <a class="nav-link p-1 btn btn-outline-primary d-flex justify-content-start align-items-center shadow" href="{% url 'customauth:logout' %}" role="button" aria-expanded="false">
+              {% include 'include/lordicon.html' with path='lordicons/logout.json' size=36 %}
+              Выйти
+            </a>
+          </li>
+        </ul>
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+			</div>
+    </div>
+  </div>
+</nav>
+{% comment %}
+<div class="d-flex justify-content-between align-items-center">
+  <a class="nav-link fw-bold py-1 px-0 float-md-start fs-5" href="{% url 'order_list' %}">
+    <i class="bi-cash-coin"></i>
+    Finance control</a>
+  <nav class="nav nav-masthead justify-content-center float-md-end">
+    {% comment %}
+    {% url 'create_order' as the_url %}
+    <a class="nav-link fw-bold py-1 px-0 {% if the_url == current_page %}active{% endif %}" href="{{the_url}}">
+     Add order</a>
+  </nav>
+</div>
+{% endcomment %}

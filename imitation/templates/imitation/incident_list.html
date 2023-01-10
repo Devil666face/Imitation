@@ -1,0 +1,43 @@
+{% for incident in incident_list %}
+<div class="card bg-light border-{% if incident.legal == "YES" %}success{% elif incident.legal == "NO" %}danger{% else %}secondary{% endif %} {% if forloop.last %}{% else %}mb-3{% endif %}">
+  <div class="card-header text-white d-flex justify-content-between bg-{% if incident.legal == "YES" %}success{% elif incident.legal == "NO" %}danger{% else %}secondary{% endif %}">
+      {% if incident.legal == "YES" %}
+        <i class="bi bi-shield-fill-check"></i>
+      {% elif incident.legal == "NO" %}
+        <i class="bi bi-shield-fill-exclamation"></i>
+      {% else %}
+        <i class="bi bi-shield-fill-x"></i>
+      {% endif %}
+	    {{incident.category}}
+      <button	class="btn-close" 
+							hx-post="{% url 'imitation:incident_delete' incident.pk %}"	
+							hx-confirm="Вы действительно хотите удалить инцидент {{incident.title}}?" 
+							hx-target=".card" 
+							hx-swap="outerHTML swap:1s"></button>
+  </div>
+  <div class="card-body d-flex flex-column">
+    <div class="d-flex justify-content-between align-items-start">
+      <h5 class="card-title">
+        {{incident.title}}
+      </h5>
+      <span class="badge bg-{% if incident.legal == "YES" %}success{% elif incident.legal == "NO" %}danger{% else %}secondary{% endif %}">{{incident.get_label_choice}}</span>
+    </div>
+    <p class="card-text">
+      <i class="bi bi-hdd-network"></i>
+      {{incident.ip}}
+    </p>
+    <p class="card-text">
+      <i class="bi bi-pc-display"></i>
+      {{incident.hostname}}
+    </p>
+  </div>
+  <div class="card-footer fs-6">
+    <div class="d-flex justify-content-start">
+      {% include 'imitation/legality_button.html' with prefix='YES' %}
+      {% include 'imitation/legality_button.html' with prefix='NONE' %}
+      {% include 'imitation/legality_button.html' with prefix='NO' %}
+    </div>
+		<small>{{incident.created_at}} - {{incident.created_at|timesince}} назад</small>
+  </div>
+</div>
+{% endfor %}

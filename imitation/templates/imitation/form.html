@@ -1,0 +1,19 @@
+<div class="row">
+  <form method="POST" {% if object %}action="{{action_url}}"{% endif %} enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <div class="row mt-4 modal-footer">
+      <div class="col">
+        <button type="submit" class="btn btn-outline-success shadow form-control mb-1">
+          <i class="bi bi-plus-square"></i> 
+          {% if button_text %}
+          {{button_text}}
+          {% else %}
+          Обновить
+          {% endif %}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+

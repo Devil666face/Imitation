@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block css %}
+  <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<main
+  class="form-signin text-center blur w-100 m-auto bg-transparent border border-light border-opacity-75 p-4 shadow-lg">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+      {% include 'include/lordicon.html' with path='lordicons/title.json' size=250 %}
+    <h1 class="h3 mb-3 fw-normal text-white">Авторизация</h1>
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger text-left" role="alert">{{ form.non_field_errors|striptags }}</div>
+    {% endif %}
+    <div class="form-floating">
+      {% block login %}{% endblock %}
+      <label for="floatingInput" class="">Имя пользователя</label>
+    </div>
+    <div class="form-floating">
+      {% block password %}{% endblock %}
+      <label for="floatingPassword" class="">Пароль</label>
+    </div>
+    <button class="w-100 mt-3 btn btn-lg btn-outline-light d-flex justify-content-center shadow" type="submit">
+      {% include 'include/lordicon.html' with path='lordicons/login.json' size=36 %}
+      Вход
+    </button>
+  </form>
+</main>
+{% endblock %}
+
+{% block javascript %}
+  <script src="{% static 'js/fudrjiwc.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base_form.html' %}
+{% block content %}
+<div class="row m-auto d-flex justify-content-between align-items-start mt-3">
+	<div class="col-xl-2 col-md-4 p-3 shadow-lg blur bg-transparent shadow-lg border border-light border-opacity-75 mb-3 d-flex flex-column">
+	{% include 'imitation/modal_button.html' with button_text='Создать категорию' id='createForm' extra_class='btn-light btn-sm' %}
+	</div>
+  <div class="col-xl-9 col-md-7 table-responsive p-4 shadow-lg blur bg-transparent border border-light border-opacity-75 d-flex flex-column">
+		<table class="table text-dark table-hover">
+		  <thead>
+		    <tr>
+		      <th scope="col" class="fs-5"><i class="bi bi-pencil-square"></i></th>
+		      <th scope="col">Категория</th>
+		      <th scope="col" class="fs-5"><i class="bi bi-trash3"></i></th>
+		    </tr>
+		  </thead>
+		  <tbody class="table-group-divider" hx-target="closest tr" hx-swap="outerHTML swap:1s">
+				{% for category in object_list %}
+		    <tr class="table-secondary">
+		      <th scope="row">
+						<button type="button" 
+										class="btn shadow btn-outline-secondary" 
+										data-bs-toggle="modal" 
+										data-bs-target="#updateForm"
+							      hx-get="{% url 'imitation:category_update' category.slug %}" 
+										hx-target="#updateFormContent"
+										hx-swap="outherHTML">
+					{{forloop.counter}}
+						</button>
+					</th>
+		      <td>
+						 {{category.title}}
+					</td>
+		      <td><button	class="btn-close" 
+							hx-post="{% url 'imitation:category_delete' category.slug %}"	
+							hx-confirm="Вы действительно хотите удалить категорию {{category.title}}?">
+					</button>
+					</td>
+		    </tr>
+				{% endfor %}
+		  </tbody>
+		</table>
+  </div>
+</div>
+{% include 'imitation/modal.html' with modal_title='Обновить категорию' button_text='Сохранить' id='updateForm' %}
+{% include 'imitation/modal.html' with modal_title='Создать категорию' button_text='Создать' id='createForm' %}
+{% endblock %}
+
+
