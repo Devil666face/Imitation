@@ -28,5 +28,12 @@ def get_rounded_chart(data:dict):
 	for key in data:
 		if key!='all':
 			values.append(data[key])
-	chart_data = Figure(data=[Pie(labels=labels, values=values, textinfo='label+percent', pull=[0, 0, 0.2])])		
+	chart_data = Figure(data=[Pie(labels=labels, values=values, textinfo='label+percent', pull=[0, 0, 0.2], hole=.3)])		
+	chart_data.update_layout(title_text='Распределение типов инцидентов')
+	chart_data.update_layout(title={
+		'font_size':22,
+		'xanchor':'center',
+		'x':0.5,
+	})
+	
 	return chart_data.to_html()

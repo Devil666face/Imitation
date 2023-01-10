@@ -10,8 +10,12 @@
   {% include 'imitation/activebar.html' %}
   {% if chart %}
   <div class="col-xxl-9 col-xl-8 col-lg-8 col-md-7 p-4 shadow-lg blur bg-transparent border border-light border-opacity-75 d-flex flex-column">
-  	{{chart|safe}}
-		{{round_chart|safe}}
+  	<div class="p-3">
+			{{chart|safe}}
+		</div>
+  	<div class="p-3">
+			{{round_chart|safe}}
+		</div>
   </div>
   {% endif %}
 </div>
