@@ -5,7 +5,8 @@ app_name = 'imitation'
 
 home = [
     path('', HomeView.as_view(), name='home'),
-    path('stat', StatisticView.as_view(), name='stat')
+    path('stat', StatisticView.as_view(), name='stat'),
+    path('result', ResultView.as_view(), name='result'),
 ]
 
 incident = [
@@ -21,15 +22,14 @@ category = [
     path('category/create', CategoryCreateView.as_view(), name='category_create'),
     path('category/<slug:slug>/delete', CategoryDeleteAjaxView.as_view(), name='category_delete'),
     path('category/<slug:slug>/update', CategoryUpdateAjaxView.as_view(), name='category_update'),
-
 ]
 
 exampleincident = [
     path('exampleincident/create', ExampleIncidentCreateView.as_view(), name='exampleincident_create'),
     path('exampleincident/<int:pk>/delete', ExampleIncidentDeleteAjaxView.as_view(), name='exampleincident_delete'),
     path('exampleincident/<int:pk>/update', ExampleIncidentUpdateAjaxView.as_view(), name='exampleincident_update'),
-
 ]
+
 
 urlpatterns = [
     *home,

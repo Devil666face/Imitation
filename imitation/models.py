@@ -19,9 +19,7 @@ class Incident(models.Model):
                             default='Неизвестный инцидент')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создан')
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Тип инцидента')
-    # legal = models.BooleanField(default=True, verbose_name='Легетимность')
     legal = models.CharField(max_length=5, choices=LegalChoices.choices, default=LegalChoices.NONE, verbose_name='Легетимность')
-    image = models.ImageField(upload_to='icons/example/%Y/%m/%d/', null=True, blank=True, verbose_name='Изображение')
     ip = models.GenericIPAddressField(protocol='IPv4',
                             verbose_name='Ip адресс источника',
                             blank=True,
@@ -51,7 +49,6 @@ class Incident(models.Model):
             if not bool(example_incident):
                 example_incident = ExampleIncident.objects.select_related('category').get(title='Неизвестный инцидент')
             self.category = example_incident.category
-            self.image = example_incident.image
             self.legal = example_incident.legal
         super().save(*args, **kwargs)
 
@@ -70,7 +67,6 @@ class Category(models.Model):
                             null=False,
                             default='Неизвестный тип')
     slug = models.SlugField(null=False, blank=False, editable=False, unique=True)
-    image = models.ImageField(upload_to='icons/category/%Y/%m/%d/', null=True, blank=True, verbose_name='Изображение')
 
     def save(self, *args, **kwargs):
         slug = slugify(self.title)
@@ -114,7 +110,6 @@ class ExampleIncident(models.Model):
                             default='Неизвестный инцидент')
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=False, verbose_name='Тип инцидента', related_name='category')
     legal = models.CharField(max_length=5, choices=LegalChoices.choices, default=LegalChoices.NONE, verbose_name='Легетимность')
-    image = models.ImageField(upload_to='icons/example/%Y/%m/%d/', null=True, blank=True, verbose_name='Изображение')
 
     def get_absolute_url(self):
         return reverse('example', kwargs={'pk':self.pk})

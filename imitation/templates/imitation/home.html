@@ -8,17 +8,19 @@
 {% block content %}
 <div class="row m-auto d-flex justify-content-between align-items-start mt-3">
   {% include 'imitation/activebar.html' %}
-  {% if incident_list %}
   <div class="col-xxl-9 col-xl-8 col-lg-8 col-md-7 p-4 shadow-lg blur bg-transparent border border-light border-opacity-75 d-flex flex-column">
+    {% if incident_list %}
     <div id="order_list">
       {% include 'imitation/incident_list.html' %}
+    {% else %}
+  		<h5 class="text-white text-center">Нет не одного инцидента</h5>
+    {% endif %}
     </div>
     {% if update %}
-      <div hx-get="{% url 'imitation:incident_list' %}" hx-target="#order_list" hx-trigger="every 1s"></div>
+      <div hx-get="{% url 'imitation:incident_list' %}" hx-target="#order_list" hx-trigger="every 5s"></div>
       <div hx-get="{% url 'imitation:incident_stat' %}" hx-target="#stat" hx-trigger="every 10s"></div>
     {% endif %}
   </div>
-  {% endif %}
 </div>
 {% endblock %}
 

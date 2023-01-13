@@ -7,6 +7,8 @@ from imitation.models import Incident
 
 def get_main_chart():
 	incident_list = Incident.objects.all().order_by('created_at')
+	if not incident_list:
+		return False
 	y_list,x_list = list(), list()
 	for index,incident in enumerate(incident_list):
 	    y_list.append(index+1)
@@ -16,7 +18,7 @@ def get_main_chart():
 									 title="График появления инцидентов",
 									 labels={'x':'Время','y':'Суммарно инцидентов'})
 	chart_data.update_layout(title={
-		'font_size':22,
+		'font_size':16,
 		'xanchor':'center',
 		'x':0.5,
 	})
@@ -31,9 +33,10 @@ def get_rounded_chart(data:dict):
 	chart_data = Figure(data=[Pie(labels=labels, values=values, textinfo='label+percent', pull=[0, 0, 0.2], hole=.3)])		
 	chart_data.update_layout(title_text='Распределение типов инцидентов')
 	chart_data.update_layout(title={
-		'font_size':22,
+		'font_size':16,
 		'xanchor':'center',
 		'x':0.5,
 	})
 	
 	return chart_data.to_html()
+

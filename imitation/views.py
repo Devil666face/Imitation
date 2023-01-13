@@ -37,14 +37,13 @@ from imitation.utils import (
     get_rounded_chart,
 )
 
-
 class HomeView(IncidentMixin, ListView):
     template_name = 'imitation/home.html'
 
     def get(self, request, *args, **kwargs):
         self.update = bool(int(request.GET.get('update',1)))
         if self.update:
-            messages.success(request, 'Автообновление включено.')
+            messages.success(request, 'Автообновление включено. Период обновления 5 сек.')
         else:
             messages.warning(request, 'Автообновление отключено.')
             
@@ -64,8 +63,29 @@ class StatisticView(LoginMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context['stat_dict'] = IncidentAjaxStatisticView.get_stat_dict()
         context['chart'] = get_main_chart()
+        if not context['chart']:
+            messages.warning(self.request, 'Не создано не одного инцидента')
+        else:
+            messages.success(self.request, 'Графики построены.')
         context['round_chart'] = get_rounded_chart(data = context['stat_dict'])
         return context
+
+
+class ResultView(IncidentMixin, ListView):
+    template_name = 'imitation/result.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        print(queryset)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        messages.success(self.request, 'Вычисляю результаты.')
+        context['stat_dict'] = IncidentAjaxStatisticView.get_stat_dict()
+        return context
+    
+
 
 class IncidentListAjaxView(IncidentMixin, ListView):
     template_name = 'imitation/incident_list'
