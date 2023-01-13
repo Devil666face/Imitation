@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customauth.apps.CustomauthConfig',
     'imitation.apps.ImitationConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,7 @@ AUTH_PASSWORD_VALIDATORS = [
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'my_cache_table',
+        'LOCATION': 'cache',
     }
 }
 
