@@ -11,6 +11,6 @@ def show_navbar(request):
     return {'current_page': current_page}
 
 
-# @register.simple_tag(name='get_str_month')
-# def get_str_month(month_number):
-#     return datetime(datetime.today().year, month_number, 1).strftime("%B")
+@register.simple_tag(name='get_list')
+def get_list(some_list:list, index):
+    return some_list[index]

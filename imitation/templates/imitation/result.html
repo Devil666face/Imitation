@@ -17,20 +17,21 @@
 			      <th scope="col" class="fs-5"><i class="bi bi-caret-down-square"></i></th>
 			      <th scope="col">Инцидент</th>
 			      <th scope="col">Категория</th>
-			      <th scope="col">Легетимность</th>
+			      <th scope="col">Частота появления</th>
+			      <th scope="col">Количество итераций</th>
 			    </tr>
 			  </thead>
 			  <tbody class="table-group-divider">
-					{% for incident in incident_list %}
-			    <tr class="table-{% if incident.legal == "YES" %}success{% elif incident.legal == "NO" %}danger{% else %}secondary{% endif %}">
-			      <th scope="row">
-								{{forloop.counter}}
-						</th>
-			      <td>
-							 {{incident.title}}
-						</td>
-			      <td>{{incident.category}}</td>
-			      <td>{{incident.get_label_choice}}</td>
+					{% for key,incident in incident_freq_list.items %}
+						{% get_list incident 0 as incident_obj %}
+						{% get_list incident 1 as freq %}
+						{% get_list incident 2 as iter %}
+			    <tr class="table-secondary">
+			      <th scope="row">{{forloop.counter}}</th>
+			      <td>{{incident_obj}}</td>
+			      <td>{{incident_obj.category}}</td>
+			      <td>{{freq}}</td>
+			      <td>{{iter}}</td>
 			    </tr>
 					{% endfor %}
 			  </tbody>

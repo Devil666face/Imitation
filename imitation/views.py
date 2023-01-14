@@ -35,6 +35,7 @@ from django.contrib import messages
 from imitation.utils import (
     get_main_chart,
     get_rounded_chart,
+    get_results,
 )
 
 class HomeView(IncidentMixin, ListView):
@@ -75,14 +76,14 @@ class ResultView(IncidentMixin, ListView):
     template_name = 'imitation/result.html'
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        print(queryset)
-        return queryset
+        self.queryset = super().get_queryset()
+        return self.queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         messages.success(self.request, 'Вычисляю результаты.')
         context['stat_dict'] = IncidentAjaxStatisticView.get_stat_dict()
+        context['incident_freq_list'] = get_results(self.queryset)
         return context
     
 
