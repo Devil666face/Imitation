@@ -10,7 +10,7 @@ from sys import platform
 if platform == "linux" or platform == "linux2":
     os.system('ifconfig|grep inet')
 elif platform == "win32":
-    os.system('ipconfig')
+    os.system('ipconfig|findstr IPv4')
 application = get_wsgi_application()
 application = WhiteNoise(application, root=STATIC_ROOT, prefix='static/')
 application.add_files(root=MEDIA_ROOT, prefix="media/")
