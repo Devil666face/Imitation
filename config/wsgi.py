@@ -8,7 +8,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 print(f'Server start on http://{socket.gethostbyname(socket.gethostname())}')
 from sys import platform
 if platform == "linux" or platform == "linux2":
-    os.system('ifconfig')
+    os.system('ifconfig|grep inet')
 elif platform == "win32":
     os.system('ipconfig')
 application = get_wsgi_application()
