@@ -24,7 +24,7 @@ class APICreateIncidentView(IncidentMixin, TemplateView):
         )
         self.category = request.GET.get(
             'category',
-            Category.objects.get(title='Неизвестный тип')
+            None
         )
         self.legal = request.GET.get(
             'legal',
@@ -38,11 +38,15 @@ class APICreateIncidentView(IncidentMixin, TemplateView):
             'hostname',
             'ARM'
         )
-        if not Category.objects.filter(title=self.category).exists():
+        if (not Category.objects.filter(title=self.category).exists()) and (self.category!=None):
             Category.objects.create(title=self.category)
+            self.category = Category.objects.get(title=self.category)
+        elif self.category!=None:
+            self.category = Category.objects.get(title=self.category)
+            
         Incident.objects.create(
             title=self.title,
-            category=Category.objects.get(title=self.category),
+            category=self.category,
             legal=self.legal,
             ip=self.ip,
             hostname=self.hostname).save()
