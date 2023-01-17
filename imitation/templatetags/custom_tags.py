@@ -6,9 +6,12 @@ register = Library()
 
 
 @register.inclusion_tag('imitation/include/navbar.html')
-def show_navbar(request):
+def show_navbar(request, user):
     current_page = request.get('PATH_INFO')
-    return {'current_page': current_page}
+    return {
+        'current_page': current_page, 
+        'user':user,
+    }
 
 
 @register.simple_tag(name='get_list')

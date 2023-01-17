@@ -14,7 +14,7 @@
 </head>
 
 <body class="d-flex">
-  {% if request.user.is_authenticated %}{% show_navbar request.META %}{% endif %}
+  {% if request.user.is_authenticated %}{% show_navbar request.META user %}{% endif %}
   <div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
     {% include 'message.html' %}
     <main class="px-3 align-items-start mb-3 mt-3">
