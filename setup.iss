@@ -8,6 +8,7 @@
 #define MyAppAssocName MyAppName + ""
 #define MyAppAssocExt ".myp"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
+#define PathDir "C:\Users\a.kalinkin\Desktop"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -24,9 +25,9 @@ AllowNoIcons=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=commandline
-OutputDir=C:\Users\artem\Desktop\Imitation
+OutputDir={#PathDir}\Imitation
 OutputBaseFilename=ÑÇÈ îò ÍÑÄ Ñåðâåð
-SetupIconFile=C:\Users\artem\Desktop\Imitation\config\static\favicon.ico
+SetupIconFile={#PathDir}\Imitation\config\static\favicon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -38,8 +39,8 @@ Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\artem\Desktop\Imitation\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\artem\Desktop\Imitation\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#PathDir}\Imitation\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#PathDir}\Imitation\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
