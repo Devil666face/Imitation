@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-y$xq(_me(80jylj-%3j50$rsg3%_&lnb1$awy)_h&nqc@fl*+m'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'customauth.apps.CustomauthConfig',
     'imitation.apps.ImitationConfig',
+    'api.apps.ApiConfig'
 
 ]
 
