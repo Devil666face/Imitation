@@ -1,1 +1,1 @@
-.\venv\Scripts\python.exe manage.py localserver
+.\venv\Scripts\waitress-serve.exe --listen 0.0.0.0:80 config.wsgi:application

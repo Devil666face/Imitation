@@ -26,22 +26,23 @@
               Административная панель
             </a>
           </li>
-          <li class="nav-item dropdown mb-2">
-            <a class="nav-link p-1 dropdown-toggle btn btn-outline-primary d-flex justify-content-start align-items-center shadow" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {% include 'include/lordicon.html' with path='lordicons/data.json' size=36 %}
-              Управление данными
+          <li class="nav-item mb-2 dropdown">
+            <a class="nav-link p-1 btn btn-outline-primary d-flex justify-content-start align-items-center shadow" href="{% url 'imitation:incident_create' %}" role="button" aria-expanded="false">
+              {% include 'include/lordicon.html' with path='lordicons/incident.json' size=36 %}
+              Инциденты
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'imitation:incident_create' %}">
-                <i class="bi bi-shield-fill-exclamation"></i>
-                Инциденты</a></li>
-              <li><a class="dropdown-item" href="{% url 'imitation:category_create' %}">
-                <i class="bi bi-tags"></i>
-                Категории</a></li>
-              <li><a class="dropdown-item" href="{% url 'imitation:exampleincident_create' %}">
-                <i class="bi bi-shield-fill-check"></i>
-                Известные инциденты</a></li>
-            </ul>
+          </li>
+          <li class="nav-item mb-2 dropdown">
+            <a class="nav-link p-1 btn btn-outline-primary d-flex justify-content-start align-items-center shadow" href="{% url 'imitation:category_create' %}" role="button" aria-expanded="false">
+              {% include 'include/lordicon.html' with path='lordicons/category.json' size=36 %}
+              Категории
+            </a>
+          </li>
+          <li class="nav-item mb-2 dropdown">
+            <a class="nav-link p-1 btn btn-outline-primary d-flex justify-content-start align-items-center shadow" href="{% url 'imitation:exampleincident_create' %}" role="button" aria-expanded="false">
+              {% include 'include/lordicon.html' with path='lordicons/example.json' size=36 %}
+              Известные инциденты
+            </a>
           </li>
           <li class="nav-item mb-2 dropdown">
             <a class="nav-link p-1 btn btn-outline-primary d-flex justify-content-start align-items-center shadow" href="{% url 'imitation:stat' %}" role="button" aria-expanded="false">
