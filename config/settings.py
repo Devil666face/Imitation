@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-y$xq(_me(80jylj-%3j50$rsg3%_&lnb1$awy)_h&nqc@fl*+m'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -17,11 +17,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django_pdb',
     'django.contrib.staticfiles',
     'customauth.apps.CustomauthConfig',
     'imitation.apps.ImitationConfig',
-    'api.apps.ApiConfig'
-
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -33,6 +33,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_pdb.middleware.PdbMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
