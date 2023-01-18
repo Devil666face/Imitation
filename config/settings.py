@@ -17,7 +17,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django_pdb',
     'django.contrib.staticfiles',
     'customauth.apps.CustomauthConfig',
     'imitation.apps.ImitationConfig',
@@ -33,7 +32,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_pdb.middleware.PdbMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
